@@ -5,6 +5,7 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
+use Joomla\CMS\Log\Log;
 
 class PlgSystemSmartimagepath extends CMSPlugin
 {
@@ -46,7 +47,14 @@ class PlgSystemSmartimagepath extends CMSPlugin
             Folder::create($newFolderAbs);
         }
 
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         $changed = false;
+
+        Log::addLogger(
+            ['text_file' => 'smartimagepath.log'],
+            Log::ALL,
+            ['smartimagepath']
+        );
 
         foreach (['image_intro', 'image_fulltext'] as $field) {
             if (empty($images->$field)) {
@@ -58,6 +66,7 @@ class PlgSystemSmartimagepath extends CMSPlugin
             $currentPath = $imageParts[0];
 
             if (strpos($currentPath, 'images/') !== 0 || substr_count($currentPath, '/') > 1) {
+                Log::add("Skipped path $currentPath - outside image root", Log::INFO, 'smartimagepath');
                 continue;
             }
 
@@ -66,10 +75,22 @@ class PlgSystemSmartimagepath extends CMSPlugin
             $target = $newFolderAbs . '/' . $fileName;
 
             if (File::exists($source)) {
+                $mimeType = mime_content_type($source);
+                if (!in_array($mimeType, $allowedTypes)) {
+                    Factory::getApplication()->enqueueMessage("SmartImagePath: Blocked file {$fileName} (MIME: {$mimeType})", 'warning');
+                    Log::add("Blocked file {$fileName} - MIME: {$mimeType}", Log::WARNING, 'smartimagepath');
+                    continue;
+                }
+
                 if (File::move($source, $target)) {
                     $images->$field = $newFolder . '/' . $fileName;
                     $changed = true;
+                    Log::add("Moved {$fileName} to {$newFolder}", Log::INFO, 'smartimagepath');
+                } else {
+                    Log::add("Failed to move {$fileName}", Log::ERROR, 'smartimagepath');
                 }
+            } else {
+                Log::add("File not found: {$source}", Log::ERROR, 'smartimagepath');
             }
         }
 
@@ -79,6 +100,7 @@ class PlgSystemSmartimagepath extends CMSPlugin
                 'images' => json_encode($images)
             ];
             $db->updateObject('#__content', $object, ['id']);
+            Log::add("Updated database for article ID {$articleId}", Log::INFO, 'smartimagepath');
         }
     }
 }
