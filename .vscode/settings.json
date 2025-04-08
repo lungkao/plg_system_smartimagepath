@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.ini": "ini",
+        "*.xml": "xml",
+        "*.php": "php"
+    },
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+}

@@ -1,0 +1,24 @@
+name: Build & Release Joomla Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create ZIP archive
+        run: |
+          zip -r plg_system_smartimagepath.zip . -x '*.git*' '*.github*' '*.vscode*'
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: plg_system_smartimagepath.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
