@@ -35,5 +35,14 @@ GNU General Public License v2 or later.
 ---
 
 ## 🙏 Credits
-Developed by Phisan Chueatchatchai 
+Developed by Phisan Chueatchatchai (with ChatGPT)
 
+
+
+---
+
+## ☕ Support this Plugin
+
+If you find **Smart Image Path** helpful, you can support the developer by buying a coffee:
+
+👉 [Buy Me a Coffee](https://buymeacoffee.com/cheuachatchai)
