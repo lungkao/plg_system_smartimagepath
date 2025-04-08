@@ -4,8 +4,7 @@
     <author>Phisan</author>
     <version>1.0.0</version>
 <description>
-☕ Like this plugin? <a href='https://buymeacoffee.com/cheuachatchai' target='_blank'>Buy me a coffee</a>.
-</description>
+☕ Like this plugin? Buy me a coffee https://buymeacoffee.com/cheuachatchai
     <files>
         <filename plugin="smartimagepath">smartimagepath.php</filename>
     </files>
