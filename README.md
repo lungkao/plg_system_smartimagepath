@@ -35,7 +35,7 @@ GNU General Public License v2 or later.
 ---
 
 ## 🙏 Credits
-Developed by Phisan Chueatchatchai (with ChatGPT)
+Developed by Pisan Chueatchatchai 
 
 
 
