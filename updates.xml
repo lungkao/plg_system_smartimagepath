@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>System - Smart Image Path</name>
+        <description>Smart Image Path Plugin for Joomla</description>
+        <element>smartimagepath</element>
+        <type>plugin</type>
+        <folder>system</folder>
+        <version>1.0.0</version>
+        <client>site</client>
+        <infourl title="Smart Image Path">https://github.com/lungkao/plg_system_smartimagepath/releases/tag/v1.0.0</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/lungkao/plg_system_smartimagepath/archive/refs/tags/v1.0.0.zip</downloadurl>
+        </downloads>
+        <targetplatform name="joomla" version="5.[0]"/>
+        <maintainer>Phisan</maintainer>
+        <maintainerurl>https://colorpack.co.th</maintainerurl>
+    </update>
+</updates>
