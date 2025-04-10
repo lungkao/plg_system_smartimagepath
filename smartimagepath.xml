@@ -3,13 +3,13 @@
     <name>plg_system_smartimagepath</name>
     <author>Phisan</author>
     <version>1.0.0</version>
-<description>
-☕ Like this plugin? Buy me a coffee https://buymeacoffee.com/cheuachatchai
+    <description>
+        ☕ Like this plugin? Buy me a coffee https://buymeacoffee.com/cheuachatchai
+    </description>
     <files>
         <filename plugin="smartimagepath">smartimagepath.php</filename>
     </files>
     <languages>
-        <language tag="en-GB">language/en-GB/en-GB.plg_system_smartimagepath.ini</language>
          <language tag="th-TH">language/th-TH/th-TH.plg_system_smartimagepath.ini</language>
     </languages>
 </extension>
