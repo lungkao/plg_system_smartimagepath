@@ -2,14 +2,20 @@
 <extension type="plugin" group="system" method="upgrade" version="5.0">
     <name>plg_system_smartimagepath</name>
     <author>Phisan</author>
+    <creationDate>April 2025</creationDate>
+    <copyright>(C) 2025 Colorpack Creations Co.,Ltd.. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>pisan@colorpack.co.th</authorEmail>
+    <authorUrl>https://colorpack.co.th</authorUrl>
     <version>1.0.0</version>
-    <description>
-        ☕ Like this plugin? Buy me a coffee https://buymeacoffee.com/cheuachatchai
-    </description>
+    <description>PLG_SYSTEM_SMARTIMAGEPATH_DESC</description>
     <files>
         <filename plugin="smartimagepath">smartimagepath.php</filename>
     </files>
     <languages>
-         <language tag="th-TH">language/th-TH/th-TH.plg_system_smartimagepath.ini</language>
+        <language tag="th-TH">language/th-TH/th-TH.plg_system_smartimagepath.ini</language>
     </languages>
+    <updateservers>
+        <server type="extension" priority="1" name="Smart Image Path Updates">https://raw.githubusercontent.com/lungkao/plg_system_smartimagepath/main/updates.xml</server>
+    </updateservers>
 </extension>
