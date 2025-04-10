@@ -10,12 +10,35 @@ use Joomla\CMS\Log\Log;
 class PlgSystemSmartimagepath extends CMSPlugin
 {
     protected $app;
+    protected $oldCatId = null;
+
+    public function onContentBeforeSave($context, $data, $isNew)
+    {
+        if ($context !== 'com_content.article') {
+            return true;
+        }
+
+        // เก็บ category ID เดิมไว้
+        if (!$isNew) {
+            $db = Factory::getDbo();
+            $query = $db->getQuery(true)
+                ->select('catid')
+                ->from('#__content')
+                ->where('id = ' . (int)$data->id);
+            $this->oldCatId = (int)$db->setQuery($query)->loadResult();
+        }
+
+        return true;
+    }
 
     public function onContentAfterSave($context, $data, $isNew, $article)
     {
         if ($context !== 'com_content.article') {
             return;
         }
+
+        // ตรวจสอบว่ามีการเปลี่ยน category หรือไม่
+        $categoryChanged = !$isNew && $this->oldCatId && $this->oldCatId !== (int)$data->catid;
 
         if (empty($data->images)) {
             return;
@@ -42,6 +65,38 @@ class PlgSystemSmartimagepath extends CMSPlugin
         $year = Factory::getDate()->format('Y');
         $newFolder = 'images/articles/' . $categoryAlias . '/' . $year . '/' . $articleId;
         $newFolderAbs = JPATH_ROOT . '/' . $newFolder;
+
+        if ($categoryChanged) {
+            // สร้าง path สำหรับ category เก่า
+            $db->setQuery("SELECT alias FROM #__categories WHERE id = " . $db->quote($this->oldCatId));
+            $oldCategoryAlias = $db->loadResult();
+            $oldFolder = 'images/articles/' . $oldCategoryAlias . '/' . $year . '/' . $articleId;
+            $oldFolderAbs = JPATH_ROOT . '/' . $oldFolder;
+
+            // ย้ายรูปจากโฟลเดอร์เก่าไปใหม่ถ้ามีอยู่
+            if (Folder::exists($oldFolderAbs)) {
+                if (!Folder::exists($newFolderAbs)) {
+                    Folder::create($newFolderAbs);
+                }
+                
+                $files = Folder::files($oldFolderAbs);
+                foreach ($files as $file) {
+                    $source = $oldFolderAbs . '/' . $file;
+                    $target = $newFolderAbs . '/' . $file;
+                    if (File::exists($source)) {
+                        if (File::move($source, $target)) {
+                            Log::add("Moved {$file} from {$oldFolder} to {$newFolder}", Log::INFO, 'smartimagepath');
+                        }
+                    }
+                }
+                
+                // ลบโฟลเดอร์เก่าถ้าว่างเปล่า
+                if (count(Folder::files($oldFolderAbs)) === 0) {
+                    Folder::delete($oldFolderAbs);
+                    Log::add("Removed empty folder: {$oldFolder}", Log::INFO, 'smartimagepath');
+                }
+            }
+        }
 
         if (!Folder::exists($newFolderAbs)) {
             Folder::create($newFolderAbs);
