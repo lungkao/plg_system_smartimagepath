@@ -2,7 +2,10 @@
 
 If you find **Smart Image Path** helpful, you can support the developer by buying a coffee:
 
-👉 [Buy Me a Coffee](https://buymeacoffee.com/cheuachatchai)
+[Buy Me a Coffee] 👉  <a href="https://buymeacoffee.com/conseilgouz](https://buymeacoffee.com/cheuachatchai" >![buy_me_a_coffee](https://github.com/conseilgouz/plg_system_cgwebp_j4/assets/19435246/4fda4cb5-64f1-4717-81ae-c71a0fc26c2d)</a>
+
+
+
 
 ---
 
