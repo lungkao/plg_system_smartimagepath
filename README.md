@@ -1,3 +1,11 @@
+## ☕ Support this Plugin
+
+If you find **Smart Image Path** helpful, you can support the developer by buying a coffee:
+
+👉 [Buy Me a Coffee](https://buymeacoffee.com/cheuachatchai)
+
+---
+
 # Smart Image Path (Joomla Plugin)
 
 ✅ Automatically organize intro and full article images when saving Joomla articles.
@@ -41,8 +49,4 @@ Developed by Pisan Chueatchatchai
 
 ---
 
-## ☕ Support this Plugin
 
-If you find **Smart Image Path** helpful, you can support the developer by buying a coffee:
-
-👉 [Buy Me a Coffee](https://buymeacoffee.com/cheuachatchai)
