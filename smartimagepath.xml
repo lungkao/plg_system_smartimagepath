@@ -1,21 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" group="system" method="upgrade" version="5.0">
-    <name>plg_system_smartimagepath</name>
-    <author>Phisan</author>
+<extension type="plugin" group="system" method="upgrade">
+    <name>PLG_SYSTEM_SMARTIMAGEPATH</name>
+    <author>Pisanchu Eachatchai</author>
     <creationDate>April 2025</creationDate>
-    <copyright>(C) 2025 Colorpack Creations Co.,Ltd.. All rights reserved.</copyright>
+    <copyright>(C) 2025 Pisanchu Eachatchai. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <authorEmail>pisan@colorpack.co.th</authorEmail>
-    <authorUrl>https://colorpack.co.th</authorUrl>
+    <authorEmail>example@yoursite.com</authorEmail>
+    <authorUrl>https://yoursite.com</authorUrl>
     <version>1.0.0</version>
-    <description>PLG_SYSTEM_SMARTIMAGEPATH_DESC</description>
+    <description>PLG_SYSTEM_SMARTIMAGEPATH_XML_DESCRIPTION</description>
+    
+    <scriptfile>script.php</scriptfile>
+    
     <files>
         <filename plugin="smartimagepath">smartimagepath.php</filename>
+        <folder>language</folder>
+        <filename>script.php</filename>
     </files>
+    
     <languages>
-        <language tag="th-TH">language/th-TH/th-TH.plg_system_smartimagepath.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_smartimagepath.ini</language>
+        <language tag="en-GB">language/en-GB/plg_system_smartimagepath.sys.ini</language>
+        <language tag="th-TH">language/th-TH/plg_system_smartimagepath.ini</language>
+        <language tag="th-TH">language/th-TH/plg_system_smartimagepath.sys.ini</language>
     </languages>
+    
     <updateservers>
         <server type="extension" priority="1" name="Smart Image Path Updates">https://raw.githubusercontent.com/lungkao/plg_system_smartimagepath/main/updates.xml</server>
     </updateservers>
+    
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="category_mode"
+                    type="radio"
+                    default="all"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_CATEGORY_MODE"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_CATEGORY_MODE_DESC"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="all">PLG_SYSTEM_SMARTIMAGEPATH_CATEGORY_ALL</option>
+                    <option value="include">PLG_SYSTEM_SMARTIMAGEPATH_CATEGORY_INCLUDE</option>
+                    <option value="exclude">PLG_SYSTEM_SMARTIMAGEPATH_CATEGORY_EXCLUDE</option>
+                </field>
+                
+                <field
+                    name="categories"
+                    type="category"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_CATEGORIES"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_CATEGORIES_DESC"
+                    extension="com_content"
+                    multiple="true"
+                    size="10"
+                    showon="category_mode:include[OR]category_mode:exclude"
+                />
+                
+                <field
+                    name="folder_structure"
+                    type="list"
+                    default="category/year/article"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_FOLDER_STRUCTURE"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_FOLDER_STRUCTURE_DESC"
+                >
+                    <option value="category/year/article">PLG_SYSTEM_SMARTIMAGEPATH_STRUCTURE_CATEGORY_YEAR_ARTICLE</option>
+                    <option value="year/category/article">PLG_SYSTEM_SMARTIMAGEPATH_STRUCTURE_YEAR_CATEGORY_ARTICLE</option>
+                    <option value="category/article">PLG_SYSTEM_SMARTIMAGEPATH_STRUCTURE_CATEGORY_ARTICLE</option>
+                </field>
+                <field
+                    name="root_folder"
+                    type="text"
+                    default="images/articles"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_ROOT_FOLDER"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_ROOT_FOLDER_DESC"
+                />
+                <field
+                    name="cleanup_empty_folders"
+                    type="radio"
+                    default="1"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_CLEANUP_EMPTY"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_CLEANUP_EMPTY_DESC"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="enable_logging"
+                    type="radio"
+                    default="1"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_ENABLE_LOGGING"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_ENABLE_LOGGING_DESC"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced" label="PLG_SYSTEM_SMARTIMAGEPATH_ADVANCED_SETTINGS">
+                <field
+                    name="process_article_content"
+                    type="radio"
+                    default="0"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_PROCESS_CONTENT"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_PROCESS_CONTENT_DESC"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="allowed_mime_types"
+                    type="textarea"
+                    default="image/jpeg&#13;&#10;image/png&#13;&#10;image/gif&#13;&#10;image/webp"
+                    label="PLG_SYSTEM_SMARTIMAGEPATH_ALLOWED_MIMES"
+                    description="PLG_SYSTEM_SMARTIMAGEPATH_ALLOWED_MIMES_DESC"
+                    rows="4"
+                />
+            </fieldset>
+        </fields>
+    </config>
 </extension>
