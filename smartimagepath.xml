@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SMARTIMAGEPATH</name>
-    <author>Pisanchu Eachatchai</author>
+    <author>Pisan Chueachatchai</author>
     <creationDate>April 2025</creationDate>
-    <copyright>(C) 2025 Pisanchu Eachatchai. All rights reserved.</copyright>
+    <copyright>(C) 2025 Colorpack Creations Co.,Ltd.. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <authorEmail>example@yoursite.com</authorEmail>
+    <authorEmail>pisan@colorpack.co.th</authorEmail>
     <authorUrl>https://yoursite.com</authorUrl>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <description>PLG_SYSTEM_SMARTIMAGEPATH_XML_DESCRIPTION</description>
     
     <scriptfile>script.php</scriptfile>

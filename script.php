@@ -4,7 +4,7 @@
  * @package     Joomla.Plugin
  * @subpackage  System.SmartImagePath
  *
- * @copyright   (C) 2025 Pisanchu Eachatchai. All rights reserved.
+ * @copyright   (C) 2025 Colorpack Creations Co.,Ltd.. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
